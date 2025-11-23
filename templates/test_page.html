@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personality Test - Page {{ page_num }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body>
+    <span class="body-bg-shape shape-a"></span>
+    <span class="body-bg-shape shape-b"></span>
+    <span class="body-bg-shape shape-c"></span>
+    <span class="body-bg-shape shape-d"></span>
+    <span class="body-bg-shape shape-e"></span>
+    <span class="body-bg-shape shape-f"></span>
+    <span class="body-bg-shape shape-g"></span>
+    <span class="body-bg-shape shape-h"></span>
+    <span class="body-bg-shape shape-i"></span>
+    <span class="body-bg-shape shape-j"></span>
+    <span class="body-bg-shape shape-k"></span>
+    <span class="body-bg-shape shape-l"></span>
+    <span class="body-bg-shape shape-m"></span>
+    <span class="body-bg-shape shape-n"></span>
+    <span class="body-bg-shape shape-o"></span>
+    <span class="body-bg-shape shape-p"></span>
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" style="width: {{ (page_num / total_pages) * 100 }}%;"></div>
+    </div>
+
+    <div class="container">
+        <h2>Page {{ page_num }} of {{ total_pages }}</h2>
+
+        <form method="POST" action="{{ url_for('test_page', page_num=page_num) }}" id="test-form" novalidate>
+            
+            <div id="form-error-message" class="error-message" style="display: none;"></div>
+
+            <div class="question-list">
+                
+                {% for question in questions %}
+                <div class="question-block"> 
+                    
+                    <div class="question-header">
+                        {% set q_number = ((page_num - 1) * 5) + loop.index %}
+                        
+                        <span class="q-number">Q{{ q_number }}.</span>
+                        <span class="q-text">{{ question.text }}</span>
+
+                        <span class="tooltip-icon" data-tooltip="{{ question.tooltip }}">?</span>
+                    </div>
+                    
+                    <div class="likert-card-container">
+                        
+                        <label class="likert-card">
+                            <input type="radio" name="{{ question.id }}" value="1" required>
+                            <div class="card-content">
+                                <span class="card-number">1</span>
+                                <span class="card-label">Strongly<br>Disagree</span>
+                            </div>
+                        </label>
+
+                        <label class="likert-card">
+                            <input type="radio" name="{{ question.id }}" value="2">
+                            <div class="card-content">
+                                <span class="card-number">2</span>
+                                <span class="card-label">Disagree</span>
+                            </div>
+                        </label>
+
+                        <label class="likert-card">
+                            <input type="radio" name="{{ question.id }}" value="3">
+                            <div class="card-content">
+                                <span class="card-number">3</span>
+                                <span class="card-label">Neutral</span>
+                            </div>
+                        </label>
+
+                        <label class="likert-card">
+                            <input type="radio" name="{{ question.id }}" value="4">
+                            <div class="card-content">
+                                <span class="card-number">4</span>
+                                <span class="card-label">Agree</span>
+                            </div>
+                        </label>
+
+                        <label class="likert-card">
+                            <input type="radio" name="{{ question.id }}" value="5">
+                            <div class="card-content">
+                                <span class="card-number">5</span>
+                                <span class="card-label">Strongly<br>Agree</span>
+                            </div>
+                        </label>
+                        
+                    </div>
+                </div> 
+                {% endfor %}    
+            </div>
+            
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary">
+                    {% if page_num == total_pages %}
+                        Submit and See Results
+                    {% else %}
+                        Next &rarr;
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mouse_parallax.js') }}"></script>
+</body>
+</html>

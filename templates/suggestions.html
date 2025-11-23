@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Career Suggestions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body>
+    <span class="body-bg-shape shape-a"></span>
+    <span class="body-bg-shape shape-b"></span>
+    <span class="body-bg-shape shape-c"></span>
+    <span class="body-bg-shape shape-d"></span>
+    <span class="body-bg-shape shape-e"></span>
+    <span class="body-bg-shape shape-f"></span>
+    <span class="body-bg-shape shape-g"></span>
+    <span class="body-bg-shape shape-h"></span>
+    <span class="body-bg-shape shape-i"></span>
+    <span class="body-bg-shape shape-j"></span>
+    <span class="body-bg-shape shape-k"></span>
+    <span class="body-bg-shape shape-l"></span>
+    <span class="body-bg-shape shape-m"></span>
+    <span class="body-bg-shape shape-n"></span>
+    <span class="body-bg-shape shape-o"></span>
+    <span class="body-bg-shape shape-p"></span>
+
+    <div class="container">
+        <a href="{{ url_for('show_result') }}" class="back-link">&larr; Back to Your Results</a>
+        <h1>Career Suggestions</h1>
+        <p class="about-subtitle" style="margin-bottom: 30px;">Based on your unique personality profile, here is an archetype that may fit you and some careers where you might thrive.</p>
+
+        <div class="summary-section summary-highlight">
+            <div class="summary-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </div>
+            <h3 class_h3="persona-title">Your Profile: {{ persona_title }}</h3>
+            <p class="persona-description">{{ persona_description }}</p>
+        </div>
+
+        <div class="career-list-container">
+            <h3>Recommended Careers:</h3>
+            <ul class="career-list">
+                {% for career in career_list %}
+                <li>{{ career }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="button-container">
+            <a href="{{ url_for('personal_growth') }}" class="btn btn-secondary">Get Personal Growth Tips</a>
+            <a href="{{ url_for('start_test') }}" class="btn btn-primary">Take the Test Again</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/mouse_parallax.js') }}"></script>
+</body>
+</html>

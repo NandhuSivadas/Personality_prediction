@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How It Works</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<body>
+    <span class="body-bg-shape shape-a"></span>
+    <span class="body-bg-shape shape-b"></span>
+    <span class="body-bg-shape shape-c"></span>
+    <span class="body-bg-shape shape-d"></span>
+    <span class="body-bg-shape shape-e"></span>
+    <span class="body-bg-shape shape-f"></span>
+    <span class="body-bg-shape shape-g"></span>
+    <span class="body-bg-shape shape-h"></span>
+    <span class="body-bg-shape shape-i"></span>
+    <span class="body-bg-shape shape-j"></span>
+    <span class="body-bg-shape shape-k"></span>
+    <span class="body-bg-shape shape-l"></span>
+    <span class="body-bg-shape shape-m"></span>
+    <span class="body-bg-shape shape-n"></span>
+    <span class="body-bg-shape shape-o"></span>
+    <span class="body-bg-shape shape-p"></span>
+
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Home</a>
+        <h1>How the Test Works</h1>
+        <p class="about-subtitle" style="margin-bottom: 30px;">The test is simple and takes about 5-10 minutes to complete. Here's how it works:</p>
+
+        <div class="how-it-works-content">
+
+            <div class="how-step">
+                <h2>Step 1: Answer 50 Questions</h2>
+                <p>You'll be presented with 50 statements about behaviors and attitudes. The questions are divided into 10 pages with 5 questions each for easy navigation.</p>
+                <ul>
+                    <li>Each question relates to one of the Big Five personality traits.</li>
+                    <li>Questions are presented in a mixed order for better accuracy.</li>
+                    <li>A progress bar shows how far you've come.</li>
+                </ul>
+            </div>
+
+            <div class="how-step">
+                <h2>Step 2: Rate Each Statement</h2>
+                <p>For each statement, indicate how much you agree or disagree using a 5-point scale:</p>
+                <dl class="scale-list">
+                    <dt>1 - Strongly Disagree:</dt>
+                    <dd>The statement doesn't describe you at all.</dd>
+                    
+                    <dt>2 - Disagree:</dt>
+                    <dd>The statement somewhat doesn't describe you.</dd>
+                    
+                    <dt>3 - Neutral:</dt>
+                    <dd>You're uncertain or the statement partially applies.</dd>
+                    
+                    <dt>4 - Agree:</dt>
+                    <dd>The statement somewhat describes you.</dd>
+                    
+                    <dt>5 - Strongly Agree:</dt>
+                    <dd>The statement describes you very well.</dd>
+                </dl>
+            </div>
+
+            <div class="how-step">
+                <h2>Step 3: Get Help When Needed</h2>
+                <p>Each question has an information icon (a small purple <strong>?</strong>) that provides a helpful explanation when you hover over it. This helps you better understand what the question is asking.</p>
+            </div>
+
+            <div class="how-step">
+                <h2>Step 4: Receive Your Results</h2>
+                <p>Once you complete all 50 questions, you'll instantly receive:</p>
+                <ul>
+                    <li><strong>Personality Scores:</strong> Your scores for all five traits.</li>
+                    <li><strong>Visual Charts:</strong> An interactive radar chart and bar graphs showing your profile.</li>
+                    <li><strong>Career Suggestions:</strong> Personalized recommendations based on your unique traits.</li>
+                    <li><strong>Growth Tips:</strong> Actionable advice for personal development.</li>
+                </ul>
+            </div>
+
+            <div class="how-tips">
+                <h3>Important Tips</h3>
+                <ul>
+                    <li><strong>Answer honestly</strong> - there are no right or wrong answers.</li>
+                    <li><strong>Don't overthink</strong> - go with your first instinct.</li>
+                    <li>Consider how you <strong>generally are</strong>, not how you wish to be.</li>
+                    <li>All answers are confidential and used only for your results.</li>
+                </ul>
+            </div>
+
+        </div> </div>
+
+    <script src="{{ url_for('static', filename='js/mouse_parallax.js') }}"></script>
+</body>
+</html>

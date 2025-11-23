@@ -1,0 +1,1135 @@
+/* --- Global Animations --- */
+@keyframes cta-pulse-glow {
+    0%   { box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3); }
+    50%  { box-shadow: 0 10px 30px rgba(108, 92, 231, 0.5); }
+    100% { box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes icon-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-4px); }
+    40%, 60% { transform: translateX(4px); }
+}
+
+@keyframes float-ethereal {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+    50%  { transform: translateY(-30px) rotate(90deg); opacity: 0.7; }
+    100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+}
+
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Global Styles & 16P Palette --- */
+:root {
+    --color-primary: #6c5ce7; /* A modern indigo/purple */
+    --color-green-strong: #2ecc71;
+    --color-green-light: #78e08f;
+    --color-red-strong: #e74c3c;
+    --color-red-light: #f08a80;
+    --color-neutral: #b0b0b0;
+    --color-bg: #f4f7f6;
+    --color-text: #333;
+    --color-light-gray: #e9ecef;
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- General Body & Container --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg); /* Solid background color */
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 50px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px 40px;
+    
+    /* --- NEW GLASSMORPHISM STYLES --- */
+    
+    /* 1. Make the background semi-transparent */
+    background-color: rgba(255, 255, 255, 0.25); 
+
+    /* 2. This is the "frosted glass" blur effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    
+    /* 3. Add a subtle "glass" border */
+    border: 1px solid rgba(255, 255, 255, 0.18); 
+    
+    /* --- End new styles --- */
+    
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    animation: fadeIn 0.5s ease-out;
+
+    /* This pushes the content ON TOP of the blobs */
+    position: relative;
+    z-index: 2;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    font-weight: 700;
+}
+h1 { text-align: center; }
+h2 { margin-top: 1.5em; }
+
+p {
+    font-size: 1.05em;
+    color: #555;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- Test Page Progress Bar (Fixed) --- */
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background-color: var(--color-light-gray);
+
+    /* This pushes it ON TOP of all content */
+    z-index: 3;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-green-light) 0%, var(--color-green-strong) 100%);
+    width: 0%;
+    transition: width 0.4s ease-out;
+    border-radius: 0 2px 2px 0;
+}
+
+/* --- General Button Styles --- */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 50px; /* Pill shape */
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #5a4bcd;
+}
+
+.btn-secondary {
+    background-color: var(--color-light-gray);
+    color: #333;
+    border: 1px solid #dee2e6;
+}
+.btn-secondary:hover {
+    background-color: #d1d5db;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* --- Homepage (Hero Section) Styles --- */
+.hero-section {
+    text-align: center;
+    padding: 60px 40px 80px 40px;
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden; /* This is needed for the glass border-radius */
+    
+    /* --- THIS IS THE FIX --- */
+    /* We add the same glass styles as .container */
+    
+    background-color: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18); 
+    
+    /* And we fix the z-index to match .container */
+    z-index: 2;
+}
+
+/* This makes sure your text and buttons are IN FRONT of the shapes */
+.hero-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Homepage Heading Styles --- */
+
+.hero-super-title {
+    /* This is now the MAIN heading */
+    font-family: 'Monoton', cursive;
+    font-size: 3.21em; 
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    margin-bottom: 30px;
+    line-height: 1.2;
+
+    /* --- This is the multi-color text effect --- */
+    background: linear-gradient(
+        -45deg, 
+        #ee7752, /* Orange */
+        #e73c7e, /* Pink */
+        #23a6d5, /* Blue */
+        #23d5ab  /* Green */
+    );
+    background-size: 400% 400%;
+    animation: gradient-flow 15s ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-headline {
+    /* This is now the SUB-heading */
+    font-family: 'Parisienne', cursive;
+    font-size: 2.5em;
+    font-weight: 400;
+    color: var(--color-primary); /* Uses the accent color */
+    text-transform: none;
+    letter-spacing: 0.5px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.hero-subtitle {
+    font-family: 'Farsan', cursive;
+    font-size: 1.35em;
+    color: #555; /* Dark color for readability */
+    max-width: 650px;
+    margin: 0 auto 40px auto;
+}
+
+/* --- Homepage Button Container --- */
+/* --- NEW Homepage Button Styles (CSS Grid Method) --- */
+
+.hero-buttons {
+    margin-top: 40px;
+
+    /* 1. Change from 'flex' to 'grid' */
+    display: grid; 
+
+   /* 1. New columns: auto-sized, not full-width */
+    grid-template-columns: auto auto; 
+    
+    /* 2. New: This centers the *group* of two buttons */
+    justify-content: center; 
+    
+    /* 3. Smaller gap to bring them even closer */
+    gap: 15px; 
+    
+    /* This is no longer needed */
+    /* justify-items: center; */
+}
+
+/* "Take the Test" button */
+.hero-buttons .btn-large {
+    padding: 12px 28px !important; /* <-- ADD THIS */
+    font-size: 16px !important;    /* <-- AND THIS */
+    background: linear-gradient(45deg, var(--color-primary), #a29bfe);
+    
+    /* 1. Set background size for the hover animation */
+    background-size: 200% 200%;
+    background-position: 0 0;
+    
+    /* 2. Add the breathing glow animation */
+    animation: cta-pulse-glow 2.5s infinite ease-in-out;
+    
+    /* 3. Make ALL transitions smooth */
+    transition: all 0.4s ease;
+
+    /* --- ADD THESE TWO LINES --- */
+    grid-column: 1 / span 2;     /* Forces this button to take the full width */
+    justify-self: center;
+    margin-bottom: 0px;  /* Resets the bottom margin */
+}
+
+.hero-buttons .btn-large:hover {
+    /* 1. Make the gradient shift on hover */
+    background-position: 100% 0;
+    
+    /* 2. Make the lift and shadow stronger */
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 14px 30px rgba(108, 92, 231, 0.5); 
+}
+
+
+
+/* --- Test Page (Likert Scale) Styles --- */
+/* --- Test Page (Likert Scale) Styles --- */
+/* --- Test Page (Futuristic Blur & Pop Cards) --- */
+
+/* 1. UPDATED: The Question Card Container */
+.question-block {
+    background-color: rgba(255, 255, 255, 0.85); /* Glassy White background */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    padding: 25px 30px;
+    border-radius: 16px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 6px solid var(--color-primary); /* The Purple Accent Line */
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect for the card */
+.question-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(108, 92, 231, 0.15);
+}
+
+/* 2. NEW: The Header Area (Holds "Q1.", Text, and Tooltip) */
+.question-header {
+    display: flex;
+    align-items: center; /* Vertically centers everything */
+    margin-bottom: 25px; /* Spacing before the buttons */
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle divider line */
+}
+
+/* 3. NEW: The "Q1." Number Style */
+.q-number {
+    font-size: 1.6em;
+    font-weight: 800; /* Extra Bold */
+    color: var(--color-primary);
+    margin-right: 15px;
+    min-width: 45px; /* Keeps alignment consistent */
+}
+
+/* 4. UPDATED: The Question Text Style */
+.q-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.4;
+    flex-grow: 1;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+/* --- Keep your existing .likert-card-container styles below this line --- */
+/* This is the 5-card container */
+.likert-card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    perspective: 1000px; /* For the 3D hover */
+}
+
+/* This is the invisible radio button */
+.likert-card input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+}
+
+/* This is the clickable card wrapper */
+.likert-card {
+    cursor: pointer;
+    width: 100px;
+    /* This transition is for the card *itself* when others are selected */
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* This is the visible card content */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    border-radius: 12px;
+    background: #fff;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    
+    /* This is the main animation transition */
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card-number {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.card-label {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #555;
+    text-align: center;
+    line-height: 1.3;
+    height: 30px;
+    transition: color 0.3s ease;
+}
+
+/* --- EYE-CATCHING ANIMATIONS --- */
+
+/* 1. The 3D "lift" on hover */
+/* This is the new, correct CSS syntax */
+.likert-card-container:not(:has(input:checked)) .likert-card:hover .card-content {
+    transform: translateY(-10px) rotateX(5deg) scale(1.05);
+    /* A more subtle shadow for the lift */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1); 
+}
+
+/* 2. NEW: Add a glowing, colored border on hover.
+   This is the new "eye-catching" part!
+*/
+.likert-card-container:not(:has(input:checked)) .likert-card:nth-of-type(1):hover .card-content {
+    border-color: var(--color-red-strong);
+    box-shadow: 0 15px 25px rgba(231, 76, 60, 0.3);
+}
+.likert-card-container:not(:has(input:checked)) .likert-card:nth-of-type(2):hover .card-content {
+    border-color: var(--color-red-light);
+    box-shadow: 0 15px 25px rgba(240, 138, 128, 0.3);
+}
+.likert-card-container:not(:has(input:checked)) .likert-card:nth-of-type(3):hover .card-content {
+    border-color: var(--color-neutral);
+    box-shadow: 0 15px 25px rgba(176, 176, 176, 0.3);
+}
+.likert-card-container:not(:has(input:checked)) .likert-card:nth-of-type(4):hover .card-content {
+    border-color: var(--color-green-light);
+    box-shadow: 0 15px 25px rgba(120, 224, 143, 0.3);
+}
+.likert-card-container:not(:has(input:checked)) .likert-card:nth-of-type(5):hover .card-content {
+    border-color: var(--color-green-strong);
+    box-shadow: 0 15px 25px rgba(46, 204, 113, 0.3);
+}
+
+/* 2. When a selection is made, blur and shrink all other cards */
+.likert-card-container:has(input:checked) .card-content {
+    transform: scale(0.9);
+    opacity: 0.4;
+    filter: blur(2px);
+}
+
+/* 3. The SELECTED card POPS and GLOWS */
+.likert-card input:checked + .card-content {
+    transform: translateY(-10px) scale(1.1); /* Pop it! */
+    opacity: 1; /* Full focus */
+    filter: blur(0); /* Sharp */
+}
+
+/* 4. Set the 5 colors for the selected card */
+.likert-card:nth-of-type(1) input:checked + .card-content {
+    background: var(--color-red-strong);
+    border-color: var(--color-red-strong);
+    box-shadow: 0 5px 25px rgba(231, 76, 60, 0.5);
+    color: white;
+}
+.likert-card:nth-of-type(2) input:checked + .card-content {
+    background: var(--color-red-light);
+    border-color: var(--color-red-light);
+    box-shadow: 0 5px 25px rgba(240, 138, 128, 0.5);
+    color: white;
+}
+.likert-card:nth-of-type(3) input:checked + .card-content {
+    background: var(--color-neutral);
+    border-color: var(--color-neutral);
+    box-shadow: 0 5px 25px rgba(176, 176, 176, 0.5);
+    color: white;
+}
+.likert-card:nth-of-type(4) input:checked + .card-content {
+    background: var(--color-green-light);
+    border-color: var(--color-green-light);
+    box-shadow: 0 5px 25px rgba(120, 224, 143, 0.5);
+    color: white;
+}
+.likert-card:nth-of-type(5) input:checked + .card-content {
+    background: var(--color-green-strong);
+    border-color: var(--color-green-strong);
+    box-shadow: 0 5px 25px rgba(46, 204, 113, 0.5);
+    color: white;
+}
+
+/* 5. Make the numbers and labels white on the selected card */
+.likert-card input:checked + .card-content .card-number,
+.likert-card input:checked + .card-content .card-label {
+    color: white;
+}
+
+/* --- Tooltip Styles --- */
+.tooltip-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+    cursor: help;
+    position: relative;
+    margin-left: 5px;
+}
+.tooltip-icon:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 130%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: normal;
+    width: 280px;
+    text-align: left;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.tooltip-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* --- Validation & Error Styles --- */
+.question-unanswered {
+    border: 3px solid var(--color-red-strong) !important;
+    border-radius: 12px;
+    animation: shake 0.5s ease-in-out;
+    background-color: #fff6f6;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.05em;
+}
+
+/* --- Result Page Styles --- */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+    align-items: start;
+}
+@media (max-width: 768px) {
+    .results-grid { grid-template-columns: 1fr; }
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+    padding: 20px;
+    background: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.progress-container { padding-top: 20px; }
+.progress-bar-label { font-weight: bold; margin-bottom: 8px; font-size: 1.05em; }
+.progress-bar-wrapper {
+    width: 100%;
+    background-color: var(--color-light-gray);
+    border-radius: 8px;
+    height: 30px;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+.progress-bar-result {
+    height: 100%;
+    /* background: linear-gradient(90deg, var(--color-primary) 0%, #a29bfe 100%); */
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
+    line-height: 30px;
+    padding-left: 12px;
+    text-align: left;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: width 0.8s ease-in-out;
+    border-radius: 8px;
+}
+.summary-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    background: var(--color-bg);
+    border-radius: 12px;
+    border: 1px solid var(--color-light-gray);
+}
+
+/* --- New Body Animated Background Shapes --- */
+
+/* This is the OUTER, INVISIBLE wrapper controlled by the mouse */
+.body-bg-shape {
+    position: fixed;
+    display: block;
+    z-index: 1; 
+    
+    /* The transition for the mouse movement */
+    transition: transform 0.1s linear; 
+    
+    /* This element is INVISIBLE. The size is just a container. */
+}
+
+/* This is the INNER, VISIBLE shape that has the animation */
+.body-bg-shape-inner {
+    width: 100%;
+    height: 100%;
+    display: block;
+    
+    /* This is your diamond shape */
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    
+    /* This is the float + pulse animation */
+    animation: float-ethereal 10s infinite ease-in-out;
+}
+
+/* --- Homepage Button Icons --- */
+
+/* This makes the icon and text align perfectly */
+.hero-buttons .btn {
+    display: inline-flex;  /* Use flexbox for alignment */
+    align-items: center;    /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    gap: 10px;              /* Space between icon and text */
+}
+
+/* This styles the SVG icon itself */
+.btn-icon {
+    /* The icon will automatically match the button's text color */
+    stroke: currentColor; 
+}
+
+/* We need to make the text part non-flexing */
+.hero-buttons .btn span {
+    display: inline-block;
+}
+
+/* --- Homepage Button Icon Animations --- */
+
+/* Make the icons transition smoothly */
+.btn-icon {
+    stroke: currentColor;
+    transition: transform 0.3s ease-out;
+}
+
+/* Make the "pen" icon tilt on hover */
+.hero-buttons .btn-large:hover .btn-icon {
+    transform: rotate(-10deg);
+}
+
+/* Make the "info" and "question" icons scale up on hover */
+.hero-buttons .btn-secondary:hover .btn-icon {
+    transform: scale(1.15);
+}
+
+
+/* --- How It Works Page: Process Steps --- */
+
+/* --- How It Works Page: Content --- */
+.how-it-works-content {
+    margin-top: 20px;
+}
+
+.how-step {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+.how-step:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.how-step h2, .how-tips h3 {
+    color: var(--color-primary);
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+.how-step p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.how-step ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.how-step ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    font-size: 1.05em;
+}
+
+/* This adds a checkmark icon */
+.how-step ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    color: var(--color-green-strong);
+}
+
+/* Styles for the 1-5 scale list */
+.scale-list {
+    margin: 15px 0 0 20px;
+}
+.scale-list dt {
+    font-weight: bold;
+    color: #333;
+}
+.scale-list dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+/* Styles for the "Important Tips" box */
+.how-tips {
+    margin-top: 30px;
+    padding: 25px;
+    background: #fdfdfd;
+    border: 1px solid var(--color-light-gray);
+    border-left: 5px solid var(--color-primary);
+    border-radius: 8px;
+}
+
+.how-tips h3 {
+    margin-top: 0;
+    color: var(--color-primary);
+}
+
+.how-tips ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.how-tips ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+}
+.how-tips ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* This adds a "lightbulb" icon */
+.how-tips ul li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* --- About Page: Trait Cards --- */
+
+.about-subtitle {
+    font-size: 1.1em;
+    text-align: center;
+    max-width: 600px;
+    margin: -10px auto 40px auto;
+    color: #555;
+}
+
+/* This is the 2-column grid for the cards */
+.trait-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* On smaller screens, stack to 1 column */
+@media (max-width: 768px) {
+    .trait-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* This is the card itself */
+.trait-card {
+    background: #fdfdfd;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+/* Add a "lift" effect on hover */
+.trait-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* The colored icon circle */
+.trait-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.trait-icon svg {
+    stroke: #ffffff;
+    width: 24px;
+    height: 24px;
+}
+
+.trait-card h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 1.25em;
+}
+
+.trait-card p {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+/* Styles for the "High/Low" list */
+.trait-details {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.trait-details li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+/* Add a simple bullet point */
+.trait-details li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.trait-details li strong {
+    color: #333;
+}
+
+/* --- Result Page Upgrades --- */
+
+/* New "Standout Trait" box style */
+.summary-highlight {
+    /* A beautiful gradient background */
+    background: linear-gradient(45deg, var(--color-primary), #a29bfe);
+    border: none;
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
+}
+
+.summary-highlight h3,
+.summary-highlight p {
+    color: #ffffff; /* Make text white */
+}
+
+/* New icon style for the summary */
+.summary-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -5px auto 15px auto;
+}
+
+.summary-icon svg {
+    stroke: #ffffff;
+    width: 24px;
+    height: 24px;
+}
+
+/* --- Result Page Button Colors --- */
+
+/* "Career Suggestions" button (matches homepage green) */
+
+
+/* --- New Result Bar Colors --- */
+
+/* These must match the names in your TRAIT_NAMES list in app.py */
+.progress-bar-result.trait-extraversion {
+    background: linear-gradient(90deg, #a29bfe 0%, var(--color-primary) 100%);
+}
+.progress-bar-result.trait-neuroticism {
+    background: linear-gradient(90deg, #81ecec 0%, #23a6d5 100%);
+}
+.progress-bar-result.trait-agreeableness {
+    background: linear-gradient(90deg, #fab1a0 0%, #e73c7e 100%);
+}
+.progress-bar-result.trait-conscientiousness {
+    background: linear-gradient(90deg, var(--color-green-light) 0%, #20c997 100%);
+}
+.progress-bar-result.trait-openness {
+    background: linear-gradient(90deg, #fbc531 0%, #ff9f43 100%);
+}
+
+/* --- Suggestions Page Content --- */
+.suggestions-content {
+    margin-top: 20px;
+}
+
+.suggestions-content h2 {
+    color: var(--color-primary);
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+/* This styles the underlined trait name */
+.suggestions-content h2 u {
+    text-decoration: none;
+    border-bottom: 3px solid #a29bfe; /* Lighter purple underline */
+}
+
+.suggestions-content p {
+    font-size: 1.05em;
+    line-height: 1.7;
+}
+
+/* --- Career Suggestions Page --- */
+
+.persona-title {
+    color: #ffffff;
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+}
+
+.persona-description {
+    color: #f0f0f0;
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.career-list-container {
+    margin-top: 30px;
+}
+
+.career-list-container h3 {
+    color: #2c3e50;
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--color-light-gray);
+    padding-bottom: 10px;
+}
+
+/* This creates a 2-column list */
+.career-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 25px;
+}
+
+.career-list li {
+    position: relative;
+    padding-left: 30px; /* Space for the icon */
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+/* This adds a checkmark icon to each career */
+.career-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-weight: bold;
+    color: var(--color-green-strong);
+}
+
+/* On small screens, go back to 1 column */
+@media (max-width: 600px) {
+    .career-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Personal Growth Tips Page --- */
+.tip-section {
+    margin-top: 20px;
+}
+
+.tip-block {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+.tip-block:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.tip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tip-header h2 {
+    color: var(--color-primary);
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.tip-score {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    background: var(--color-light-gray);
+    padding: 5px 12px;
+    border-radius: 50px;
+}
+
+.tip-block h4 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0 0 8px 0;
+}
+
+.tip-block p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* --- Global Button Color Overrides --- */
+
+/* Homepage: "About" Button (Green) */
+.hero-buttons a[href="/about"] {
+    background-color: #20c997;
+    color: white;
+    border-color: #20c997;
+}
+.hero-buttons a[href="/about"]:hover {
+    background-color: #1baa80;
+    border-color: #1baa80;
+    color: white;
+    box-shadow: 0 5px 20px rgba(32, 201, 151, 0.4);
+}
+
+/* Homepage: "How it Works" Button (Orange) */
+.hero-buttons a[href="/how-it-works"] {
+    background-color: #ff9f43;
+    color: white;
+    border-color: #ff9f43;
+}
+.hero-buttons a[href="/how-it-works"]:hover {
+    background-color: #e68e3c;
+    border-color: #e68e3c;
+    color: white;
+    box-shadow: 0 5px 20px rgba(255, 159, 67, 0.4);
+}
+
+/* --- Result Page Button Colors --- */
+
+/* Result Page: "Career" Button (Green) */
+/* We target .button-container (which is NOT on the hero page) */
+.container:not(.hero-section) .button-container a[href="/career-suggestions"] {
+    background-color: #20c997;
+    color: white;
+    border-color: #20c997;
+}
+.container:not(.hero-section) .button-container a[href="/career-suggestions"]:hover {
+    background-color: #1baa80;
+    border-color: #1baa80;
+    color: white;
+    box-shadow: 0 5px 20px rgba(32, 201, 151, 0.4);
+}
+
+/* Result Page: "Growth" Button (Orange) */
+.container:not(.hero-section) .button-container a[href="/personal-growth"] {
+    background-color: #ff9f43;
+    color: white;
+    border-color: #ff9f43;
+}
+.container:not(.hero-section) .button-container a[href="/personal-growth"]:hover {
+    background-color: #e68e3c;
+    border-color: #e68e3c;
+    color: white;
+    box-shadow: 0 5px 20px rgba(255, 159, 67, 0.4);
+}
