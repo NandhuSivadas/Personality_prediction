@@ -18,14 +18,13 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "model.joblib")
 
 print("DEBUG: Trying to load model from:", MODEL_PATH)
-
 try:
-    model = joblib.load(MODEL_PATH)
-    print("DEBUG: Model loaded successfully!")
+    # CHANGE IS HERE: mmap_mode='r' makes it load instantly without crashing RAM
+    model = joblib.load(MODEL_PATH, mmap_mode='r')
+    print("DEBUG: Model loaded successfully using mmap!")
 except Exception as e:
     model = None
     print("DEBUG: Model failed to load:", e)
-
 
 # Load all questions from the JSON file
 QUESTIONS_PATH = os.path.join(BASE_DIR, "questions.json")
